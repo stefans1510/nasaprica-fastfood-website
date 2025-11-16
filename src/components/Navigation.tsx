@@ -8,21 +8,25 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['kontakt', 'porucivanje'];
       const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+      const kontaktElement = document.getElementById('kontakt');
+      const porucivanjeElement = document.getElementById('porucivanje');
+      let active = '';
+      if (kontaktElement) {
+        const offsetTop = kontaktElement.offsetTop;
+        const offsetHeight = kontaktElement.offsetHeight;
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          active = 'kontakt';
         }
       }
+      if (!active && porucivanjeElement) {
+        const offsetTop = porucivanjeElement.offsetTop;
+        const offsetHeight = porucivanjeElement.offsetHeight;
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          active = 'porucivanje';
+        }
+      }
+      setActiveSection(active);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -38,17 +42,17 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { id: 'kontakt', label: 'KONTAKT' },
-    { id: 'porucivanje', label: 'PORUČI' }
+    { id: 'porucivanje', label: 'PORUČI' },
+    { id: 'kontakt', label: 'KONTAKT' }
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b border-border backdrop-blur-sm">
+  <nav className="fixed top-0 left-0 w-full z-50 border-b border-border backdrop-blur-sm shadow-lg" style={{ backgroundColor: '#fff3d9' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-primary">Naša Priča</h1>
+            <img src="/nasa_prica.jpg" alt="Logo" className="h-16 w-auto" />
           </div>
 
           {/* Desktop Navigation */}
@@ -57,7 +61,7 @@ const Navigation = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                className={`px-3 py-2 text-sm font-semibold transition-colors ${
                   activeSection === link.id
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-foreground hover:text-primary'
@@ -82,13 +86,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background border-t border-border">
+          <div className="md:hidden border-t border-border" style={{ backgroundColor: '#fff3d9' }}>
             <div className="flex justify-center space-x-6 py-4">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 text-xs font-semibold transition-colors ${
                     activeSection === link.id
                       ? 'text-primary border-b-2 border-primary'
                       : 'text-foreground hover:text-primary'

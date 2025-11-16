@@ -1,5 +1,5 @@
-import React from 'react';
 import Navigation from '@/components/Navigation';
+import VideoBanner from '@/components/VideoBanner';
 import ProductSidebar from '@/components/ProductSidebar';
 import ProductSection from '@/components/ProductSection';
 import OrderInfo from '@/components/OrderInfo';
@@ -11,6 +11,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <VideoBanner />
       <ProductSidebar />
       <ProductSection />
       <OrderInfo />

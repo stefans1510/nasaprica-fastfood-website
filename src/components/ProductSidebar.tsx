@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChefHat, Scale, Salad, Coffee } from 'lucide-react';
+import { ChefHat, Scale, Salad, CupSoda, CakeSlice } from 'lucide-react';
 
 const ProductSidebar = () => {
   const [activeCategory, setActiveCategory] = useState('rostilj-porcije');
@@ -9,35 +9,67 @@ const ProductSidebar = () => {
     { id: 'rostilj-porcije', label: 'Roštilj na porcije', icon: ChefHat },
     { id: 'rostilj-kilo', label: 'Roštilj na kilo', icon: Scale },
     { id: 'salate', label: 'Salate', icon: Salad },
-    { id: 'pica', label: 'Pića', icon: Coffee }
+    { id: 'palacinke', label: 'Palačinke', icon: CakeSlice},
+    { id: 'pica', label: 'Piće', icon: CupSoda }
   ];
 
   useEffect(() => {
     const handleScroll = () => {
+      const navbarHeight = 64;
+      const scrollY = window.scrollY;
+      
+      // Simple scroll threshold approach - only show sidebar after scrolling past video banner area
+      // Video banner is 60vh-80vh, so roughly 60-80% of screen height
+      const viewportHeight = window.innerHeight;
+      const minScrollThreshold = viewportHeight * 0.5; // At least 60% of viewport height scrolled
+      
+      // First check: Must have scrolled past video banner area
+      if (scrollY < minScrollThreshold) {
+        setIsVisible(false);
+        return;
+      }
+      
+      // Second check: Must be in products section area
+      let isVisible = false;
       const productsSection = document.getElementById('products');
       if (productsSection) {
         const rect = productsSection.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsVisible(isInView);
+        isVisible = rect.top < viewportHeight && rect.bottom > 0;
       }
+      
+      // Third check: Hide if scrolled past last product section
+      const lastCategory = categories[categories.length - 1];
+      const lastSection = document.getElementById(lastCategory.id);
+      if (lastSection) {
+        const lastRect = lastSection.getBoundingClientRect();
+        if (lastRect.bottom <= 0) {
+          isVisible = false;
+        }
+      }
+      
+      setIsVisible(isVisible);
 
       // Update active category based on scroll position
-      const scrollPosition = window.scrollY + 200;
-      
-      for (const category of categories) {
+      const scrollPosition = window.scrollY + navbarHeight + 8;
+      for (let i = 0; i < categories.length; i++) {
+        const category = categories[i];
         const element = document.getElementById(category.id);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          const rect = element.getBoundingClientRect();
+          const sectionBottom = rect.bottom + window.scrollY;
+          const navbarHeight = 64 + 8;
+          // If bottom of section is above navbar, activate next category
+          if (window.scrollY + navbarHeight >= sectionBottom) {
+            if (i < categories.length - 1) {
+              setActiveCategory(categories[i + 1].id);
+            }
+          } else {
             setActiveCategory(category.id);
             break;
           }
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
@@ -46,7 +78,9 @@ const ProductSidebar = () => {
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const navbarHeight = 64; // Adjust if your navbar height changes
+      const y = element.getBoundingClientRect().top + window.scrollY - navbarHeight - 8;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -83,8 +117,8 @@ const ProductSidebar = () => {
       </div>
 
       {/* Mobile Horizontal Bar */}
-      <div className="lg:hidden sticky top-16 z-30 bg-background border-b border-border">
-        <div className="flex justify-center space-x-1 p-2 overflow-x-auto">
+  <div className="lg:hidden fixed top-16 left-0 w-full z-30 bg-background border-b border-border">
+        <div className="flex justify-center space-x-4 p-2 overflow-x-auto">
           {categories.map((category) => {
             const IconComponent = category.icon;
             return (
@@ -98,11 +132,11 @@ const ProductSidebar = () => {
                 }`}
               >
                 <IconComponent size={20} />
-                <span className="text-xs mt-1 text-center leading-tight">
+                {/* <span className="text-xs mt-1 text-center leading-tight">
                   {category.label.split(' ').map((word, index) => (
                     <span key={index} className="block">{word}</span>
                   ))}
-                </span>
+                </span> */}
               </button>
             );
           })}

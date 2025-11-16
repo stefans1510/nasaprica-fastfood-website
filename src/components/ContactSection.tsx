@@ -12,7 +12,7 @@ const ContactSection = () => {
             Kontakt i lokacija
           </h2>
           <p className="text-muted-foreground text-lg">
-            Dođite i posjetite nas ili nas kontaktirajte
+            Dođite i posetite nas ili nas kontaktirajte
           </p>
         </div>
 
@@ -28,9 +28,8 @@ const ContactSection = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-foreground">
-                  Zmaja od Bosne 8<br />
-                  71000 Sarajevo<br />
-                  Bosna i Hercegovina
+                  Marijane Gregoran 43a<br />
+                  Beograd<br />
                 </p>
               </CardContent>
             </Card>
@@ -39,18 +38,18 @@ const ContactSection = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-primary">
                   <Clock size={24} />
-                  Radno vrijeme
+                  Radno vreme
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span>Ponedjeljak - Petak:</span>
-                    <span className="font-medium">11:00 - 23:00</span>
+                    <span>Ponedeljak - Petak:</span>
+                    <span className="font-medium">09:00 - 24:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Subota - Nedjelja:</span>
-                    <span className="font-medium">12:00 - 24:00</span>
+                    <span>Subota:</span>
+                    <span className="font-medium">09:00 - 20:00</span>
                   </div>
                 </div>
               </CardContent>
@@ -68,12 +67,12 @@ const ContactSection = () => {
                   Budite u toku sa našim najnovijim ponudama i specijalitetima
                 </p>
                 <Button 
-                  variant="outline" 
+                  variant="default" 
                   className="w-full"
-                  onClick={() => window.open('https://instagram.com/nasaprica', '_blank')}
+                  onClick={() => window.open('https://instagram.com/_nasa_prica_belgrade', '_blank')}
                 >
                   <Instagram size={20} className="mr-2" />
-                  @nasaprica
+                  @_nasa_prica_belgrade
                 </Button>
               </CardContent>
             </Card>
@@ -85,7 +84,7 @@ const ContactSection = () => {
               <CardContent className="p-0 h-full">
                 <div className="w-full h-full bg-muted rounded-lg flex items-center justify-center">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.6587!2d18.4058!3d43.8563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4758cbb1ed719bd1%3A0x562ecda6de87b33e!2sZmaja%20od%20Bosne%208%2C%20Sarajevo%2071000!5e0!3m2!1sen!2sba!4v1629789456789!5m2!1sen!2sba"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8005.632919385203!2d20.508210617223774!3d44.81303486110927!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7b074460cbbb%3A0x83f5dc8fcc5ffa26!2z0J3QsNGI0LAg0J_RgNC40YfQsA!5e0!3m2!1sen!2srs!4v1756120616606!5m2!1sen!2srs"
                     width="100%"
                     height="100%"
                     style={{ border: 0, borderRadius: '0.5rem' }}

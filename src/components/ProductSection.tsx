@@ -1,189 +1,116 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  image: string;
-}
-
-interface ProductGroup {
-  id: string;
-  title: string;
-  products: Product[];
-}
+import { productGroups } from '@/data/products';
 
 const ProductSection = () => {
-  const productGroups: ProductGroup[] = [
-    {
-      id: 'rostilj-porcije',
-      title: 'Roštilj na porcije',
-      products: [
-        {
-          id: '1',
-          name: 'Ćevapi',
-          description: 'Tradicionalni ćevapi sa lukom i ajvarom',
-          price: '8,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '2',
-          name: 'Pljeskavica',
-          description: 'Domaća pljeskavica sa pomfritom',
-          price: '10,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '3',
-          name: 'Kobasice',
-          description: 'Domaće kobasice sa prilogom',
-          price: '9,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '4',
-          name: 'Ražnjići',
-          description: 'Sočni ražnjići od svinjetine',
-          price: '12,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '5',
-          name: 'Vešalica',
-          description: 'Mešano meso sa prilogom',
-          price: '15,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '6',
-          name: 'Steakovi',
-          description: 'Saftni steakovi po želji',
-          price: '18,00 KM',
-          image: '/placeholder.svg'
-        }
-      ]
-    },
-    {
-      id: 'rostilj-kilo',
-      title: 'Roštilj na kilo',
-      products: [
-        {
-          id: '7',
-          name: 'Ćevapi - kg',
-          description: 'Kilogram domaćih ćevapa',
-          price: '28,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '8',
-          name: 'Kobasice - kg',
-          description: 'Kilogram domaćih kobasica',
-          price: '32,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '9',
-          name: 'Ražnjići - kg',
-          description: 'Kilogram sočnih ražnjića',
-          price: '35,00 KM',
-          image: '/placeholder.svg'
-        }
-      ]
-    },
-    {
-      id: 'salate',
-      title: 'Salate',
-      products: [
-        {
-          id: '10',
-          name: 'Shopska salata',
-          description: 'Svježa shopska salata sa sirom',
-          price: '6,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '11',
-          name: 'Miješana salata',
-          description: 'Sezonska miješana salata',
-          price: '5,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '12',
-          name: 'Grčka salata',
-          description: 'Traditcionalna grčka salata',
-          price: '7,00 KM',
-          image: '/placeholder.svg'
-        }
-      ]
-    },
-    {
-      id: 'pica',
-      title: 'Pića',
-      products: [
-        {
-          id: '13',
-          name: 'Coca Cola',
-          description: 'Osvežavajuća Coca Cola 0.33l',
-          price: '2,50 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '14',
-          name: 'Pivo',
-          description: 'Lokalno pivo 0.5l',
-          price: '3,00 KM',
-          image: '/placeholder.svg'
-        },
-        {
-          id: '15',
-          name: 'Voda',
-          description: 'Prirodna voda 0.5l',
-          price: '1,50 KM',
-          image: '/placeholder.svg'
-        }
-      ]
-    }
-  ];
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, number>>({});
+
+  const handleSizeChange = (productId: string, sizeIndex: number) => {
+    setSelectedSizes(prev => ({
+      ...prev,
+      [productId]: sizeIndex
+    }));
+  };
 
   return (
-    <div id="products" className="min-h-screen bg-background py-8">
+  <div id="products" className="min-h-screen py-8 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pl-24">
-        {productGroups.map((group) => (
+        {productGroups.map((group, idx) => (
           <section key={group.id} id={group.id} className="mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center lg:text-left">
-              {group.title}
-            </h2>
+            <div className={`flex flex-col items-center ${idx === 0 ? 'mt-24 sm:mt-32' : ''} mb-8`}>
+              <h2 className="flex items-center gap-2 text-3xl font-bold text-foreground text-center lg:text-left">
+                {group.icon && <group.icon size={32} className="text-primary" />}
+                {group.title}
+              </h2>
+              <div className="w-24 h-1 bg-primary rounded mt-2"></div>
+            </div>
+            
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {group.products.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <CardContent className="p-0">
-                    <div className="aspect-[4/3] bg-muted">
-                      <img 
-                        src={product.image} 
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg text-foreground mb-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3">
-                        {product.description}
-                      </p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-xl font-bold text-primary">
-                          {product.price}
-                        </span>
+              {group.products.map((product) => {
+                // Handle products with sizes
+                if (product.sizes && product.sizes.length > 0) {
+                  const selectedSizeIndex = selectedSizes[product.id] || 0;
+                  const selectedSize = product.sizes[selectedSizeIndex];
+                  const currentImage = selectedSize.image || product.image;
+                  
+                  return (
+                    <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl">
+                      <CardContent className="p-2">
+                        <div className="aspect-[4/3] bg-muted rounded-2xl overflow-hidden">
+                          <img 
+                            src={currentImage} 
+                            alt={product.name}
+                            className="w-full h-full object-cover rounded-2xl"
+                          />
+                        </div>
+                        <div className="p-2">
+                          <h3 className="font-semibold text-lg text-gray-700 mb-2">
+                            {product.name}
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-3">
+                            {product.description}
+                          </p>
+                          
+                          <div className="flex justify-between items-center">
+                            <span className="text-xl font-bold text-primary">
+                              {selectedSize.price} RSD
+                            </span>
+                            
+                            {/* Size Selection - Inline with price */}
+                            {product.sizes.length > 1 && (
+                              <div className="flex flex-wrap gap-1">
+                                {product.sizes.map((size, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => handleSizeChange(product.id, index)}
+                                    className={`px-2 py-1 text-xs rounded border transition-colors ${
+                                      selectedSizeIndex === index
+                                        ? 'bg-primary text-white border-primary'
+                                        : 'bg-white text-gray-600 border-gray-300 hover:border-primary'
+                                    }`}
+                                  >
+                                    {size.size}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                }
+                
+                // Handle products with fixed price (no sizes)
+                return (
+                  <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl">
+                    <CardContent className="p-2">
+                      <div className="aspect-[4/3] bg-muted rounded-2xl overflow-hidden">
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-full object-cover rounded-2xl"
+                        />
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <div className="p-2">
+                        <h3 className="font-semibold text-lg text-gray-700 mb-2">
+                          {product.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mb-3">
+                          {product.description}
+                        </p>
+                        
+                        <div className="flex justify-between items-center">
+                          <span className="text-xl font-bold text-primary">
+                            {product.price} RSD
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </section>
         ))}
