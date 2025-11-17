@@ -39,7 +39,7 @@ const OrderInfo = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Preuzimanje</h3>
               <p className="text-gray-600">Bez dodatne naplate</p>
-              <p className="text-sm text-gray-500 mt-2">Priprema: 15-20 min</p>
+              <p className="text-sm text-gray-500 mt-2">Priprema: 10-15 min</p>
             </div>
 
             {/* Delivery */}
@@ -48,8 +48,9 @@ const OrderInfo = () => {
                 <Car size={32} />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Dostava</h3>
-              <p className="text-gray-600">Dodatno: <span className='text-primary'>200 RSD</span></p>
-              <p className="text-sm text-gray-500 mt-2">Vreme dostave: 30-45 min</p>
+              <p className="text-gray-600">Uskoro...</p>
+              {/* <p className="text-gray-600">Dodatno: <span className='text-primary'>200 RSD</span></p>
+              <p className="text-sm text-gray-500 mt-2">Vreme dostave: 30-45 min</p> */}
             </div>
           </div>
         </div>

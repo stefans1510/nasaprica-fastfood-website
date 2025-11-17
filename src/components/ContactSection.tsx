@@ -44,11 +44,11 @@ const ContactSection = () => {
               <CardContent>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span>Ponedeljak - Petak:</span>
-                    <span className="font-medium">09:00 - 24:00</span>
+                    <span>Ponedeljak - Subota:</span>
+                    <span className="font-medium">09:00 - 23:30</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Subota:</span>
+                    <span>Nedelja:</span>
                     <span className="font-medium">09:00 - 20:00</span>
                   </div>
                 </div>

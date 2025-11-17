@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { ChefHat, Scale, Salad, CupSoda, CakeSlice } from 'lucide-react';
+import BurgerIcon from './icons/BurgerIcon';
+import KitchenScaleIcon from './icons/KitchenScaleIcon';
+import CrepeIcon from './icons/CrepeIcon';
+import SaladIcon from './icons/SaladIcon';
+import SodaBottleIcon from './icons/SodaBottleIcon';
 
 const ProductSidebar = () => {
   const [activeCategory, setActiveCategory] = useState('rostilj-porcije');
   const [isVisible, setIsVisible] = useState(false);
 
   const categories = [
-    { id: 'rostilj-porcije', label: 'Roštilj na porcije', icon: ChefHat },
-    { id: 'rostilj-kilo', label: 'Roštilj na kilo', icon: Scale },
-    { id: 'salate', label: 'Salate', icon: Salad },
-    { id: 'palacinke', label: 'Palačinke', icon: CakeSlice},
-    { id: 'pica', label: 'Piće', icon: CupSoda }
+    { id: 'rostilj-porcije', label: 'Roštilj na porcije', icon: BurgerIcon },
+    { id: 'rostilj-kilo', label: 'Roštilj na kilo', icon: KitchenScaleIcon },
+    { id: 'salate', label: 'Salate', icon: SaladIcon },
+    { id: 'palacinke', label: 'Palačinke', icon: CrepeIcon},
+    { id: 'pica', label: 'Piće', icon: SodaBottleIcon }
   ];
 
   useEffect(() => {

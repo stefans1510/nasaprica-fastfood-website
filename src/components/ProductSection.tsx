@@ -26,7 +26,7 @@ const ProductSection = () => {
             </div>
             
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {group.products.map((product) => {
                 // Handle products with sizes
                 if (product.sizes && product.sizes.length > 0) {
@@ -35,20 +35,20 @@ const ProductSection = () => {
                   const currentImage = selectedSize.image || product.image;
                   
                   return (
-                    <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl">
-                      <CardContent className="p-2">
-                        <div className="aspect-[4/3] bg-muted rounded-2xl overflow-hidden">
+                    <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl h-full flex flex-col">
+                      <CardContent className="p-2 flex flex-col h-full">
+                        <div className="aspect-[3/2] bg-muted rounded-2xl overflow-hidden">
                           <img 
                             src={currentImage} 
                             alt={product.name}
                             className="w-full h-full object-cover rounded-2xl"
                           />
                         </div>
-                        <div className="p-2">
+                        <div className="p-2 h-32 flex flex-col">
                           <h3 className="font-semibold text-lg text-gray-700 mb-2">
                             {product.name}
                           </h3>
-                          <p className="text-muted-foreground text-sm mb-3">
+                          <p className="text-muted-foreground text-sm mb-3 line-clamp-2 flex-1">
                             {product.description}
                           </p>
                           
@@ -84,20 +84,20 @@ const ProductSection = () => {
                 
                 // Handle products with fixed price (no sizes)
                 return (
-                  <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl">
-                    <CardContent className="p-2">
-                      <div className="aspect-[4/3] bg-muted rounded-2xl overflow-hidden">
+                  <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow shadow-b-xl rounded-2xl h-full flex flex-col">
+                    <CardContent className="p-2 flex flex-col h-full">
+                      <div className="aspect-[3/2] bg-muted rounded-2xl overflow-hidden">
                         <img 
                           src={product.image} 
                           alt={product.name}
                           className="w-full h-full object-cover rounded-2xl"
                         />
                       </div>
-                      <div className="p-2">
+                      <div className="p-2 h-32 flex flex-col">
                         <h3 className="font-semibold text-lg text-gray-700 mb-2">
                           {product.name}
                         </h3>
-                        <p className="text-muted-foreground text-sm mb-3">
+                        <p className="text-muted-foreground text-sm mb-3 line-clamp-2 flex-1">
                           {product.description}
                         </p>
                         

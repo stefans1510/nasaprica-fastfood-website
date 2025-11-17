@@ -36,7 +36,7 @@ const VideoBanner: React.FC<VideoBannerProps> = ({
       </video>
       
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/50"></div>
       
       {/* Content Overlay */}
       <div className="relative z-10 flex items-center justify-center h-full">
