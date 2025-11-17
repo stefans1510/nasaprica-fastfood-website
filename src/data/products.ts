@@ -97,7 +97,7 @@ export const productGroups: ProductGroup[] = [
       {
         id: 'p8',
         name: 'Sombrero pljeskavica 250g',
-        description: '',
+        description: 'Roštilj meso sa kačkavaljem, slaninicom i ljutenicom',
         image: '/pljeskavica.png',
         price: '460'
       },
