@@ -4,6 +4,7 @@ import KitchenScaleIcon from './icons/KitchenScaleIcon';
 import CrepeIcon from './icons/CrepeIcon';
 import SaladIcon from './icons/SaladIcon';
 import SodaBottleIcon from './icons/SodaBottleIcon';
+import FrenchFriesIcon from './icons/FrenchFriesIcon';
 
 const ProductSidebar = () => {
   const [activeCategory, setActiveCategory] = useState('rostilj-porcije');
@@ -12,6 +13,7 @@ const ProductSidebar = () => {
   const categories = [
     { id: 'rostilj-porcije', label: 'Roštilj na porcije', icon: BurgerIcon },
     { id: 'rostilj-kilo', label: 'Roštilj na kilo', icon: KitchenScaleIcon },
+    { id: 'prilozi', label: 'Prilozi', icon: FrenchFriesIcon },
     { id: 'salate', label: 'Salate', icon: SaladIcon },
     { id: 'palacinke', label: 'Palačinke', icon: CrepeIcon},
     { id: 'pica', label: 'Piće', icon: SodaBottleIcon }

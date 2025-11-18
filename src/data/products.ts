@@ -3,6 +3,7 @@ import KitchenScaleIcon from '../components/icons/KitchenScaleIcon';
 import CrepeIcon from '../components/icons/CrepeIcon';
 import SaladIcon from '../components/icons/SaladIcon';
 import SodaBottleIcon from '../components/icons/SodaBottleIcon';
+import FrenchFriesIcon from '../components/icons/FrenchFriesIcon';
 import React from 'react';
 
 export interface ProductSize {
@@ -264,6 +265,48 @@ export const productGroups: ProductGroup[] = [
         description: '1kg mešanog mesa, 4 somuna, 300g pomfrita i Coca-Cola 1.5l',
         image: '/np_obrok1kg.png',
         price: '1800'
+      }
+    ]
+  },
+  {
+    id: 'prilozi',
+    title: 'Prilozi',
+    icon: FrenchFriesIcon,
+    products: [
+      {
+        id: 'pr1',
+        name: 'Pomfrit',
+        description: '200g',
+        image: '/pomfrit.png',
+        price: '220'
+      },
+      {
+        id: 'pr2',
+        name: 'Somun / Lepinja',
+        description: 'Prilog uz roštilj na kilogram',
+        image: '/somun.png',
+        price: '60'
+      },
+      {
+        id: 'pr3',
+        name: 'Luk',
+        description: 'Prilog uz roštilj na kilogram',
+        image: '/placeholder.svg',
+        price: '100'
+      },
+      {
+        id: 'pr4',
+        name: 'Kupus',
+        description: 'Prilog uz roštilj na kilogram',
+        image: '/kupus.png',
+        price: '100'
+      },
+      {
+        id: 'pr5',
+        name: 'Urnebes Salata',
+        description: 'Prilog uz roštilj na kilogram',
+        image: '/urnebes.png',
+        price: '130'
       }
     ]
   },
